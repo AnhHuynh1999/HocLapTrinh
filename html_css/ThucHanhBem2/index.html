@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../ThucHanhBEM/assets/css/style.css">
+</head>
+
+<body>
+    <div id="toast">
+        <!-- <div class="toast toast--success">
+            <div class=" toast__icon">
+                <i class="ti ti-alert"></i>
+            </div>
+            <div class=" toast__body">
+                <h3 class=" toast__title">
+                    Success
+                </h3>
+                <p class=" toast__msg">
+                    Thành công rồi nha
+                </p>
+            </div>
+            <div class=" toast__close">
+                <i class="ti ti-close"></i>
+            </div>
+        </div> -->
+    </div>
+    <div>
+        <!-- Success -->
+        <!-- <div class="toast toast--success">
+            <div class=" toast__icon">
+                <i class="ti ti-check"></i>
+            </div>
+            <div class=" toast__body">
+                <h3 class=" toast__title">
+                    Success
+                </h3>
+                <p class=" toast__msg">
+                    Thành công rồi nha
+                </p>
+            </div>
+            <div class=" toast__close">
+                <i class="ti ti-close"></i>
+            </div>
+        </div> -->
+        <!-- Info -->
+        <!-- <div class="toast toast--info">
+            <div class=" toast__icon">
+                <i class="ti ti-check"></i>
+            </div>
+            <div class=" toast__body">
+                <h3 class=" toast__title">
+                    Info
+                </h3>
+                <p class=" toast__msg">
+                    Thành công rồi nha
+                </p>
+            </div>
+            <div class=" toast__close">
+                <i class="ti ti-close"></i>
+            </div>
+        </div> -->
+        <!-- Warning -->
+        <!-- <div class="toast toast--warning">
+            <div class=" toast__icon">
+                <i class="ti ti-check"></i>
+            </div>
+            <div class=" toast__body">
+                <h3 class=" toast__title">
+                    Warning
+                </h3>
+                <p class=" toast__msg">
+                    Thành công rồi nha
+                </p>
+            </div>
+            <div class=" toast__close">
+                <i class="ti ti-close"></i>
+            </div>
+        </div> -->
+        <!-- Error -->
+        <!-- <div class="toast toast--error">
+            <div class=" toast__icon">
+                <i class="ti ti-check"></i>
+            </div>
+            <div class=" toast__body">
+                <h3 class=" toast__title">
+                    Error
+                </h3>
+                <p class=" toast__msg">
+                    Thành công rồi nha
+                </p>
+            </div>
+            <div class=" toast__close">
+                <i class="ti ti-close"></i>
+            </div>
+        </div> -->
+        <div class="btn btn--success" onclick="showSuccessToast();">Show success</div>
+        <div class="btn btn--danger" onclick="showErrorToast();">Show error</div>
+    </div>
+    <script>
+        function toast({
+            title = '',
+            message = '',
+            type = 'info',
+            duration = 3000 }) {
+            const main = document.getElementById('toast')
+            if (main) {
+                const toast = document.createElement('div');
+                // Auto remove toast
+                const autoRemoveId = setTimeout(function () {
+                    main.removeChild(toast)
+                }, duration + 1000)
+                // Remove toast onclick
+                toast.onclick = function (e) {
+                    if (e.target.closest('.toast__close')) {
+                        main.removeChild(toast)
+                        clearTimeout(autoRemoveId)
+                    }
+                }
+                const icons = {
+                    success: 'ti ti-check',
+                    info: 'ti ti-info',
+                    warning: 'ti ti-alert',
+                    error: 'ti ti-alert'
+                }
+                toast.classList.add('toast', `toast--${type}`);
+                const delay = (duration / 1000).toFixed(2)
+                toast.style.animation = `slideInLeft ease 0.3s, fadeOut linear 1s ${delay}s forwards`
+                toast.innerHTML = `
+                    <div class=" toast__icon">
+                        <i class="${icons[type]}"></i>
+                    </div>
+                    <div class=" toast__body">
+                        <h3 class=" toast__title">
+                            ${title}
+                        </h3>
+                        <p class=" toast__msg">
+                            ${message}
+                        </p>
+                    </div>
+                    <div class=" toast__close">
+                        <i class="ti ti-close"></i>
+                    </div>`
+                main.appendChild(toast)
+
+            }
+        }
+        // toast({
+        //     title: "Success",
+        //     message: "Thành công 12",
+        //     type: "success",
+        //     duration: 3000
+        // })
+        function showSuccessToast() {
+            toast({
+                title: "Success",
+                message: "Thành công 12",
+                type: "success",
+                duration: 5000
+            })
+
+        }
+        function showErrorToast() {
+            toast({
+                title: "Success",
+                message: "Thành công 12",
+                type: "error",
+                duration: 5000
+            })
+
+
+        }
+    </script>
+</body>
+
+</html>
